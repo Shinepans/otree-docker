@@ -1,17 +1,15 @@
 FROM python:3-alpine
 
-ENV REDIS_URL 'redis://redis:6379'
-ENV DJANGO_SETTINGS_MODULE 'settings'
+ENV REDIS_URL="redis://redis:6379" \
+    DJANGO_SETTINGS_MODULE="settings"
 
 ADD ./ /opt/otree
 
 RUN apk -U add --no-cache postgresql-dev gcc musl-dev curl \
                           bash postgresql \
     && pip install -r /opt/otree/requirements.txt \
-    && curl https://bin.equinox.io/c/ekMN3bCZFUn/forego-stable-linux-amd64.tgz -O \
-	&& cd /usr/local/bin \
-	&& tar -xf /forego-stable-linux-amd64.tgz \
-	&& rm /forego-stable-linux-amd64.tgz \
+    && curl https://bin.equinox.io/c/ekMN3bCZFUn/forego-stable-linux-amd64.tgz \
+    | tar -x -C /usr/local/bin \
     && mkdir -p /opt/init \
     && chmod +x /opt/otree/entrypoint.sh \
     && apk del postgresql-dev gcc musl-dev curl
