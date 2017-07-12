@@ -11,4 +11,5 @@ if [ ! -f "/opt/init/.done" ]; then
     && touch /opt/init/.done
 fi
 
+export PYTHONUNBUFFERED=1
 cd /opt/otree && otree runprodserver --port=80
