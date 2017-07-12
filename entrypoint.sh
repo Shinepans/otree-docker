@@ -11,4 +11,4 @@ if [ ! -f "/opt/init/.done" ]; then
     && touch /opt/init/.done
 fi
 
-/usr/local/bin/forego start -f /Procfile
+cd /opt/otree && otree runprodserver --port=80

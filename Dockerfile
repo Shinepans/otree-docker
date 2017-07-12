@@ -12,12 +12,9 @@ RUN apk -U add --no-cache bash \
                           postgresql \
                           postgresql-dev \
     && pip install --no-cache-dir -r /opt/otree/requirements.txt \
-    && curl https://bin.equinox.io/c/ekMN3bCZFUn/forego-stable-linux-amd64.tgz \
-    | tar -xz -C /usr/local/bin \
     && mkdir -p /opt/init \
     && chmod +x /opt/otree/entrypoint.sh \
-    && apk del curl gcc musl-dev postgresql-dev \
-    && echo "oTree: /bin/bash -c 'cd /opt/otree && otree runprodserver --port=80'"> /Procfile
+    && apk del curl gcc musl-dev postgresql-dev
 
 WORKDIR /opt/otree
 VOLUME /opt/init
