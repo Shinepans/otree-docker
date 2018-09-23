@@ -11,10 +11,12 @@ RUN apk -U add --no-cache bash \
                           musl-dev \
                           postgresql \
                           postgresql-dev \
+                          libffi \
+                          libffi-dev \
     && pip install --no-cache-dir -r /opt/otree/requirements.txt \
     && mkdir -p /opt/init \
     && chmod +x /opt/otree/entrypoint.sh \
-    && apk del curl gcc musl-dev postgresql-dev
+    && apk del curl gcc musl-dev postgresql-dev libffi-dev
 
 WORKDIR /opt/otree
 VOLUME /opt/init
