@@ -7,8 +7,6 @@ try:
 except ImportError:
     from urlparse import urlparse
 
-from django.db import connections
-
 url = urlparse(os.environ['DATABASE_URL'])
 database = url.path[1:]
 user = url.username
